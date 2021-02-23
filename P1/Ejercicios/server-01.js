@@ -1,11 +1,14 @@
 const http = require('http')
 
-const server = http.createServer();
+const PUERTO = 8080;
+
 
 function atender(req, res){
     console.log("Petición recibida");
 }
 
-server.on('request', atender);
+const server = http.createServer(atender);
 
-server.listen(8080);
+server.listen(PUERTO);
+
+console.log ("Servidor 2 activado, en el puerto " + PUERTO);
