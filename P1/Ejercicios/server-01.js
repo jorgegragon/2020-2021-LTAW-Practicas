@@ -3,12 +3,12 @@ const http = require('http')
 const PUERTO = 8080;
 
 
-function atender(req, res){
-    console.log("Petición recibida");
-}
+const server = http.createServer((req, res) => {
 
-const server = http.createServer(atender);
+    console.log ("Peticion recibida 3");
+
+});
 
 server.listen(PUERTO);
 
-console.log ("Servidor 2 activado, en el puerto " + PUERTO);
+console.log ("Servidor 3 activado, en el puerto " + PUERTO);
