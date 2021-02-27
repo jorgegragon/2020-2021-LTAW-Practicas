@@ -19,7 +19,27 @@ a{
 
 .cabecera{
 	width: 100%;
-	max-width: 1920px;
+	max-width: 100%;
 	margin: auto;
 	background-color: #e08309;
+}
+
+.logo{
+	padding-top: 40px;
+	padding-bottom: 30px;
+	padding-left: 150px;
+	display: inline;
+	float: left;
+
+}
+
+.carrito{
+	width: 40px;
+	height: auto;
+	display: inline;
+	float: right;
+	padding-top: 40px;
+	padding-bottom: 30px;
+	margin-right: 100px;
+
 }
