@@ -25,12 +25,13 @@ a{
 }
 
 .logo{
+	width: 200px;
+	height: 200px;
 	padding-top: 40px;
 	padding-bottom: 30px;
 	padding-left: 150px;
 	display: inline;
 	float: left;
-
 }
 
 .carrito{
@@ -41,5 +42,19 @@ a{
 	padding-top: 40px;
 	padding-bottom: 30px;
 	margin-right: 100px;
+}
+
+.galeria1{
+	padding: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.foto1{
+	width: calc(25% - 20px);
+	margin: 10px;
+	position: relative;
 
 }
