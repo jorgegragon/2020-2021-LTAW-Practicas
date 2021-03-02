@@ -8,16 +8,15 @@ const server = http.createServer((req, res) => {
 
     console.log("Recibido");
 
-    let q = url.parse(req.url, true);
-    console.log("Recurso solicitado (URL):" + req.url);
-    console.log("Recurso:" + q.pathname);
+    let cap = url.parse(req.url, true);
+    console.log("Recurso:" + cap.pathname);
 
     let fichero = "";
             
-    if (q.pathname == "/")
-        fichero += "index.html";  //--Página principal
+    if (cap.pathname == "/")
+        fichero += "/index.html";  //--Página principal
     else{
-        fichero = q.pathname; //-- q.pathname es otro recurso que se pide en el localhost
+        fichero = cap.pathname; //-- q.pathname es otro recurso que se pide en el localhost
     }
 
     //-- Para sacar el tipo de fichero
@@ -26,7 +25,7 @@ const server = http.createServer((req, res) => {
         console.log(fichero);
 
 
-    fs.readFile (fichero, 'utf8', (err, data) => {
+    fs.readFile (fichero, function(err, data) {
 
         if (err) {  //-- Ha ocurrido algun error
              console.log("Error!!");
@@ -41,7 +40,7 @@ const server = http.createServer((req, res) => {
             let mime = "text/html";
             
             //Tipo de imágenes
-            if (type_file == "png" || type_file == "jpg") {
+            if (type_file == 'png' || type_file == 'jpg') {
                 mime = "image/" + type_file;
             }
         
@@ -54,9 +53,10 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, {'Content-Type': mime});
             res.write(data);
             res.end();
+            console.log("---------Final ciclo----------");
         }
     });
 });
 
 server.listen(PUERTO);
-console.log ("Servidor 5 Happy activado, en el puerto " + PUERTO);
+console.log ("Servidor Tienda, en el puerto " + PUERTO);
