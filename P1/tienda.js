@@ -2,7 +2,7 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 
-const PUERTO = 8080;
+const PUERTO = 8081;
 
 const server = http.createServer((req, res) => {
 
@@ -15,15 +15,17 @@ const server = http.createServer((req, res) => {
     let fichero = "";
             
     if (q.pathname == "/")
-        fichero += "/ContenidoTienda/index.html"  //--Página principal
+        fichero += "index.html";  //--Página principal
     else{
         fichero = q.pathname; //-- q.pathname es otro recurso que se pide en el localhost
     }
 
     //-- Para sacar el tipo de fichero
-    type_file = fichero.split(".")[1] //--Se coge la extensión del archivo
-    fichero = "." + fichero
-    
+    type_file = fichero.split(".")[1]; //--Se coge la extensión del archivo
+    fichero = "." + "/ContenidoTienda" + fichero;
+        console.log(fichero);
+
+
     fs.readFile (fichero, 'utf8', (err, data) => {
 
         if (err) {  //-- Ha ocurrido algun error
@@ -35,18 +37,19 @@ const server = http.createServer((req, res) => {
         } else {  //-- Lectura normal
         
             console.log("Lectura correcta");
-            type_file = fichero.split(".")[1]; //--Se coge la extensión del archivo
-            let mime = "text/html"
+
+            let mime = "text/html";
+            
             //Tipo de imágenes
-            if (type_file == 'png' || type_file == 'jpg') {
-            mime = "image/" + type_file;
+            if (type_file == "png" || type_file == "jpg") {
+                mime = "image/" + type_file;
             }
         
             // CSS
             if (type_file == "css"){
-            mime = "text/css";
+                mime = "text/css";
             }
-        
+            console.log(mime);
             //-- Generar el mensaje de respuesta
             res.writeHead(200, {'Content-Type': mime});
             res.write(data);
