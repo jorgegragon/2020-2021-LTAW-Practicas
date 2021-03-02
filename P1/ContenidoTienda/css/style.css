@@ -9,7 +9,7 @@ body{
 img{
 	display: block;
 	max-width: 100%;
-	height: auto;
+	max-height: 100%;
 }
 
 a{
@@ -52,9 +52,21 @@ a{
 	align-items: flex-start;
 }
 
-.foto1{
-	width: calc(25% - 20px);
+.roma{
+	width: 25%;
+	margin: 10px;
+	margin-left: 20px;
+	position: relative;
+}
+
+.paris{
+	width: 25%;
 	margin: 10px;
 	position: relative;
+}
 
+.atenas{
+	width: 25%;
+	margin: 20px;
+	position: relative;
 }
