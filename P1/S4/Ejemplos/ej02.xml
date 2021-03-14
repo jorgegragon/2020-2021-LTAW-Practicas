@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tienda >
+
+<!-- Estructura de mi tienda-->
+<tienda xmlns:t1="https://github.com/jorgegragon/2020-2021-LTAW-Practicas/tree/main/P1/S3"
+        xmlns:t2="http://w3c.defenitions/Store/es">
+
+    <!-- Dentro de la tienda hay diferentes productos-->
+    <t1:producto>
+        Roma
+    </t1:producto>
+    
+    <t2:producto>
+        Paris
+    </t2:producto>
+</tienda>

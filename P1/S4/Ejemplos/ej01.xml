@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tienda >
+
+<!-- Estructura de mi tienda-->
+<tienda>
+    <!-- Dentro de la tienda hay diferentes productos-->
+    <producto>
+        Roma
+    </producto>
+    
+    <producto>
+        Paris
+    </producto>
+</tienda>
