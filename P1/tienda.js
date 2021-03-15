@@ -13,13 +13,13 @@ const server = http.createServer((req, res) => {
 
     let fichero = "";
             
-    if (cap.pathname == "/")
+    if (cap.pathname == "/"){
         fichero += "/index.html";  //--Página principal
-    else{
+    } else {       
         fichero = cap.pathname; //-- q.pathname es otro recurso que se pide en el localhost
     }
 
-    //-- Para sacar el tipo de fichero
+        //-- Para sacar el tipo de fichero
     type_file = fichero.split(".")[1]; //--Se coge la extensión del archivo
     fichero = "." + "/ContenidoTienda" + fichero;
         console.log(fichero);
