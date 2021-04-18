@@ -28,7 +28,7 @@ const server = http.createServer((req, res) => {
     fs.readFile (fichero, function(err, data) {
 
         if (err) {  //-- Ha ocurrido algun error
-             console.log("Error!!");
+            console.log("Error!!");
 
             res.writeHead(404, {'Content-Type': 'text/html'});
             return res.end("404 Not Found");
