@@ -4,6 +4,7 @@ const fs = require('fs');
 
 const PUERTO = 8081;
 
+
 const server = http.createServer((req, res) => {
 
     console.log("Recibido");
@@ -19,7 +20,8 @@ const server = http.createServer((req, res) => {
         fichero = cap.pathname; //-- q.pathname es otro recurso que se pide en el localhost
     }
 
-        //-- Para sacar el tipo de fichero
+
+    //-- Para sacar el tipo de fichero
     type_file = fichero.split(".")[1]; //--Se coge la extensión del archivo
     fichero = "." + "/ContenidoTienda" + fichero;
         console.log(fichero);
