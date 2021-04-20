@@ -2,7 +2,7 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 
-const PUERTO = 8081;
+const PUERTO = 8080;
 
 const server = http.createServer((req, res) => {
 
@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
         //-- Para sacar el tipo de fichero
     type_file = fichero.split(".")[1]; //--Se coge la extensión del archivo
     fichero = "." + "/ContenidoTienda" + fichero;
-        console.log(fichero);
+    //console.log(type_file);
 
 
     fs.readFile (fichero, function(err, data) {

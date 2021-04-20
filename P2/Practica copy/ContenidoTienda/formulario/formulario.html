@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="coockies.js" defer></script>
-    <title>Login</title>
+    <title>Formulario</title>
 </head>
 <body>
-    <h1>¡Datos Recibidos!</h1>
-    <p>Gracias por logearte</p>
+    <form action="/procesar_user" method="get">
+        Nombre:
+        <input type="text" name="nombre"/>
+        <p></p>
+        <input type="submit" value="Enviar"/>
+    </form>
     <a href="/">Pagina principal</a>
 </body>
 </html>
