@@ -7,6 +7,7 @@ const PUERTO = 8080;
 //-- Cambios
 var PRINCIPAL = fs.readFileSync('./ContenidoTienda/index.html','utf-8');
 //-- Formularios
+const pagina_inicio = "./ContenidoTienda/index.html";
 const user_correcto = './ContenidoTienda/formulario/correcto.html';
 const user_denegado = './ContenidoTienda/formulario/error.html';
 const login = "./ContenidoTienda/formulario/formulario.html";
@@ -16,6 +17,9 @@ const carrito = './ContenidoTienda/formulario/carro.html';
 const FICHERO_JSON = "./ContenidoTienda/formulario/registro.json";
 const tienda_json = fs.readFileSync(FICHERO_JSON);
 const tienda = JSON.parse(tienda_json);
+const tienda_user = tienda["Usuarios"];
+const tienda_productos = tienda["Productos"];
+const tienda_pedidos = tienda["Pedidos"];
 
 //-- Buscar User
 function get_user(req) {
@@ -44,7 +48,6 @@ function get_user(req) {
           user = valor;
         }
       });
-  
       //-- Si la variable user no está asignada
       //-- se devuelve null
       return user || null;
@@ -68,16 +71,7 @@ const server = http.createServer((req, res) => {
     //console.log("User: " + user);
 
     if (myURL.pathname == '/') {
-        //--- Si la variable user está asignada
-        if (user) {
-        //-- Añadir a la página el nombre del usuario
-        //
-        //
-        //
-        }
-
         fichero += "/index.html";
-
     }else{
         fichero = myURL.pathname; //-- q.pathname es otro recurso que se pide en el localhost
     }
@@ -90,7 +84,7 @@ const server = http.createServer((req, res) => {
     if (fichero == './ContenidoTienda/procesar_user') {
         user = myURL.searchParams.get('nombre');
         
-        tienda.forEach((element, index)=>{
+        tienda_user.forEach((element, index)=>{
           if (element["nombre"] == user){
               registrado += 1;
           }
@@ -119,6 +113,11 @@ const server = http.createServer((req, res) => {
         
         } else {  //-- Lectura normal
             
+
+            if (user != null && fichero == pagina_inicio) {
+            //-- Añadir a la página el nombre del usuario
+              data = PRINCIPAL.replace("Login", "<h4>Usuario: " + user + "</h4>");
+           }
             //console.log("Lectura correcta");
 
             let mime = "text/html";
@@ -133,7 +132,6 @@ const server = http.createServer((req, res) => {
                 mime = "text/css";
             }
 
-            //console.log(mime);
             //-- Generar el mensaje de respuesta
             res.writeHead(200, {'Content-Type': mime});
             res.write(data);
