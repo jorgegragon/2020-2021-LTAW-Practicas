@@ -6,12 +6,18 @@ const PUERTO = 8080;
 
 //-- Cambios
 var PRINCIPAL = fs.readFileSync('./ContenidoTienda/index.html','utf-8');
+var CARRO = fs.readFileSync('./ContenidoTienda/formulario/carro.html','utf-8');
+var PAG_ERROR = fs.readFileSync('./ContenidoTienda/formulario/error.html','utf-8');
 //-- Formularios
 const pagina_inicio = "./ContenidoTienda/index.html";
 const user_correcto = './ContenidoTienda/formulario/correcto.html';
 const user_denegado = './ContenidoTienda/formulario/error.html';
 const login = "./ContenidoTienda/formulario/formulario.html";
 const carrito = './ContenidoTienda/formulario/carro.html';
+const compra = './ContenidoTienda/formulario/compra.html';
+const add_carro = "./ContenidoTienda/solicitud_compra";
+const compra_correcta = "./ContenidoTienda/formulario/compra_correcta.html";
+const compra_denegada = './ContenidoTienda/formulario/buy_error.html'
 
 //-- Fichero JSON
 const FICHERO_JSON = "./ContenidoTienda/formulario/registro.json";
@@ -102,6 +108,40 @@ const server = http.createServer((req, res) => {
             fichero = carrito;
     }
 
+    if (fichero == add_carro) {
+      if (user != null) {
+        fichero = compra;
+        var cantidad = myURL.searchParams.get('cantidad');
+        var destino = myURL.searchParams.get('destino');
+
+        tienda_user.forEach((element, index)=>{
+          if (element["nombre"] == user){
+              element["carrito"][destino] = cantidad;
+          }
+        });
+
+      } else {
+        fichero = login;
+      }
+    }
+
+    if (fichero == "./ContenidoTienda/compra_correcta") {     
+      tienda_user.forEach((element, index)=>{
+        if (element["nombre"] == user){
+          if (element["carrito"]["roma"] == 0 &&
+              element["carrito"]["paris"] == 0 &&
+              element["carrito"]["atenas"] == 0){
+                fichero = compra_denegada;
+          }else{
+            fichero = compra_correcta;
+            element["carrito"]["roma"] = 0;
+            element["carrito"]["paris"] = 0;
+            element["carrito"]["atenas"] = 0;
+          }
+        }
+      });  
+    }
+
 
     fs.readFile (fichero, function(err, data) {
 
@@ -109,15 +149,27 @@ const server = http.createServer((req, res) => {
             console.log("Error!!!!!!!!!!!");
 
             res.writeHead(404, {'Content-Type': 'text/html'});
-            return res.end("404 Not Found");
+            return res.end(PAG_ERROR);
         
         } else {  //-- Lectura normal
             
 
-            if (user != null && fichero == pagina_inicio) {
+          if (user != null && fichero == pagina_inicio) {
             //-- Añadir a la página el nombre del usuario
               data = PRINCIPAL.replace("Login", "<h4>Usuario: " + user + "</h4>");
-           }
+          }
+
+          if (fichero == carrito) {
+              var carro_cliente = CARRO.replace("Login", "<h2>Usuario: " + user + "</h2>");
+              
+              tienda_user.forEach((element, index)=>{
+                if (element["nombre"] == user){
+                  var carro_cliente1 = carro_cliente.replace("registroRoma", element["carrito"]["roma"]);
+                  var carro_cliente2 = carro_cliente1.replace("registroParis", element["carrito"]["paris"]);
+                  data = carro_cliente2.replace("registroAtenas", element["carrito"]["atenas"]);
+                }
+              });
+          }
             //console.log("Lectura correcta");
 
             let mime = "text/html";

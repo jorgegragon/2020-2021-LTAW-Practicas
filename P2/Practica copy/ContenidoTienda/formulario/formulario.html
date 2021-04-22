@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
+    <link rel="stylesheet" href="../css/style_formulario.css">
+    <title>Login</title>
 </head>
 <body>
     <form action="/procesar_user" method="get">
-        Nombre:
-        <input type="text" name="nombre"/>
-        <p></p>
-        <input type="submit" value="Enviar"/>
+        <label for="nombre">Nombre</label>
+	    <input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre"/>
+
+        <input type="submit" name="enviar" value="enviar datos"/>
     </form>
     <a href="/">Pagina principal</a>
 </body>

@@ -31,6 +31,10 @@ a{
 	color: white;
 }
 
+button{
+	width: 100%;
+}
+
 p {
     display: block;
     margin-block-start: 1em;

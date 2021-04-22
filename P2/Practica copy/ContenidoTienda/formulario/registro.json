@@ -7,9 +7,9 @@
             "direccion":"guindales",
             "tarjeta":"1234567",
             "carrito":{
-                        "roma" : 0,
-                        "paris" : 0,
-                        "atenas" : 0
+                        "roma" : 1,
+                        "paris" : 2,
+                        "atenas" : 3
                     }
         },
 
