@@ -7,10 +7,10 @@
             "direccion":"guindales",
             "tarjeta":"1234567",
             "carrito":{
-                        "roma" : 1,
-                        "paris" : 2,
-                        "atenas" : 3
-                    }
+                        "roma" : 0,
+                        "paris" : 0,
+                        "atenas" : 0
+                      }
         },
 
         {
@@ -23,7 +23,7 @@
                         "roma" : 0,
                         "paris" : 0,
                         "atenas" : 0
-                    }
+                      }
         }
     ],
     
@@ -50,13 +50,11 @@
 
     "Pedidos" : [
         {
-            "usuario":"jorge",
-            "direccion":"guindales",
-            "productos":{
-                "roma" : 2,
-                "paris" : 2,
-                "atenas" : 1
-            }
+            "Nombre":"jorge",
+            "Apellido":"guindales",
+            "Email":"guindales",
+            "Direccion":"guindales",
+            "Tarjeta": "12345"
         }
     ]
 }

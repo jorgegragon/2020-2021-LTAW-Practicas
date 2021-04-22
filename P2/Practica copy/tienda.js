@@ -125,7 +125,8 @@ const server = http.createServer((req, res) => {
       }
     }
 
-    if (fichero == "./ContenidoTienda/compra_correcta") {     
+    if (fichero == "./ContenidoTienda/compra_correcta") {
+      //-- Resolución compra     
       tienda_user.forEach((element, index)=>{
         if (element["nombre"] == user){
           if (element["carrito"]["roma"] == 0 &&
@@ -139,7 +140,18 @@ const server = http.createServer((req, res) => {
             element["carrito"]["atenas"] = 0;
           }
         }
-      });  
+      });
+      //-- Añadir a JSON la información
+      var name = myURL.searchParams.get('nombre');
+      var apellidos = myURL.searchParams.get('apellidos');
+      var email = myURL.searchParams.get('email');
+      var direccion = myURL.searchParams.get('direccion');
+      var tarjeta = myURL.searchParams.get('tarjeta');
+
+      tienda_pedidos.push({"Nombre": name, "Apellido": apellidos, "Email": email,
+                           "Direccion": direccion, "Tarjeta": tarjeta});
+
+      //console.log(tienda_pedidos);
     }
 
 
