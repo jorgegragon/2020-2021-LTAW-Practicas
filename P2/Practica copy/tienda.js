@@ -168,7 +168,7 @@ const server = http.createServer((req, res) => {
 
           if (user != null && fichero == pagina_inicio) {
             //-- Añadir a la página el nombre del usuario
-              data = PRINCIPAL.replace("Login", "<h4>Usuario: " + user + "</h4>");
+              data = PRINCIPAL.replace("Login", "Usuario: " + user);
           }
 
           if (fichero == carrito) {
