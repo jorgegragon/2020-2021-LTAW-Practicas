@@ -2,7 +2,7 @@
 
 const http = require('http');
 const fs = require('fs');
-const PUERTO = 8080;
+const PUERTO = 8082;
 
 //-- Cargar la Página de error
 const ERROR = fs.readFileSync('error_page.html');
@@ -61,8 +61,9 @@ const server = http.createServer((req, res) => {
                 }
                 
             }
-            console.log(result);
+            //console.log(result);
             content = JSON.stringify(result);
+            console.log(content);
             break;
 
         case 'cliente-4.js':

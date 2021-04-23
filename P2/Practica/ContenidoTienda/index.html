@@ -12,6 +12,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/cliente.js" defer></script>
 
 </head>
 
@@ -20,11 +21,13 @@
         <div id="logo">
             <img src="Imagenes/logo.png">
         </div>
+
         <div id="carrito">
           <a href="formulario/formulario.html">
             <p id= "nombre_user"></p>Login</p>
           </a>
         </div>
+
         <div id="encabezado">
             <h2>Viajes Grande S.L.</h2>
         </div>
@@ -36,8 +39,12 @@
     </div>
 
     <div class="titulillo">
-      <label for="nombre">Producto a buscar</label>
-	    <input type="text" name="nombre" id="nombre"/>
+      <form action="/procesar_busqueda" method="get">
+        <label for="nombre">Buscar producto</label>
+        <input type="text" name="ciudad" id="caja"/>
+        <input type="submit" name="enviar" value="buscar"/>
+        <p id="display1"></p>
+      </form>
     </div>
 
     <div class="titulillo">

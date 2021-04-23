@@ -2,14 +2,18 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 
-const PUERTO = 8080;
+const PUERTO = 8082;
 
 //-- Cambios
 var PRINCIPAL = fs.readFileSync('./ContenidoTienda/index.html','utf-8');
 var CARRO = fs.readFileSync('./ContenidoTienda/formulario/carro.html','utf-8');
 var PAG_ERROR = fs.readFileSync('./ContenidoTienda/formulario/error.html','utf-8');
+var BUSQUEDA = fs.readFileSync('./ContenidoTienda/formulario/busqueda.json','utf-8');
 //-- Formularios
 const pagina_inicio = "./ContenidoTienda/index.html";
+const paris = "./ContenidoTienda/html/paris.html";
+const roma = "./ContenidoTienda/html/roma.html";
+const atenas = "./ContenidoTienda/html/atenas.html";
 const user_correcto = './ContenidoTienda/formulario/correcto.html';
 const user_denegado = './ContenidoTienda/formulario/error.html';
 const login = "./ContenidoTienda/formulario/formulario.html";
@@ -21,6 +25,7 @@ const compra_denegada = './ContenidoTienda/formulario/buy_error.html'
 
 //-- Fichero JSON
 const FICHERO_JSON = "./ContenidoTienda/formulario/registro.json";
+var BUSQUEDA_JSON = "./ContenidoTienda/formulario/busqueda.json";
 const tienda_json = fs.readFileSync(FICHERO_JSON);
 const tienda = JSON.parse(tienda_json);
 const tienda_user = tienda["Usuarios"];
@@ -158,10 +163,58 @@ const server = http.createServer((req, res) => {
     }
 
 
+    if (fichero == "./ContenidoTienda/busqueda") {
+
+      //-- Leer los parámetros
+      let param1 = myURL.searchParams.get('param1');
+
+      param1 = param1.toUpperCase();
+
+      //console.log("Param: " +  param1);
+
+      let result = [];
+      let destino = [];
+
+      tienda_productos.forEach((element, index)=>{
+        if (element["destino"]){
+          destino.push(element["destino"]);
+        }
+      });
+
+      for (let prod of destino) {
+        //-- Pasar a mayúsculas
+        var prodU = prod.toUpperCase();
+      //-- Si el producto comienza por lo indicado en el parametro
+      //-- meter este producto en el array de resultados
+        if (prodU.includes(param1)) {
+          result.push(prod);
+        }  
+      }
+
+      var elementos = JSON.stringify(result);
+      BUSQUEDA = elementos;
+      fichero = BUSQUEDA_JSON;
+    }
+
+    if (fichero == "./ContenidoTienda/procesar_busqueda") {
+      let ciudad = myURL.searchParams.get('ciudad');
+      
+      if (ciudad == "paris") {
+        fichero = paris;     
+      }else if(ciudad == "roma"){
+        fichero = roma;
+      }else if(ciudad == "atenas"){
+        fichero = atenas;
+      }else{
+        fichero = pagina_inicio;
+      }
+    }
+
+
     fs.readFile (fichero, function(err, data) {
 
         if (err) {  //-- Ha ocurrido algun error
-            console.log("Error!!!!!!!!!!!");
+            console.log("Error!");
 
             res.writeHead(404, {'Content-Type': 'text/html'});
             return res.end(PAG_ERROR);
@@ -185,6 +238,10 @@ const server = http.createServer((req, res) => {
                 }
               });
           }
+
+          if (fichero == BUSQUEDA_JSON) {
+              data = BUSQUEDA;
+          }
             //console.log("Lectura correcta");
 
             let mime = "text/html";
@@ -199,6 +256,16 @@ const server = http.createServer((req, res) => {
                 mime = "text/css";
             }
 
+            //JSON
+            if (type_file == "json"){
+              mime = "application/json";
+            }
+
+            //JS
+            if (type_file == "js"){
+              mime = "application/javascript";
+            }
+            
             //-- Generar el mensaje de respuesta
             res.writeHead(200, {'Content-Type': mime});
             res.write(data);

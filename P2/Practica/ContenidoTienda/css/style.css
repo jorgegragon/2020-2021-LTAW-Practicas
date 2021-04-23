@@ -139,3 +139,11 @@ a{
     background-position: 420px -1px;
     background-size: 160px;
 }
+
+.contenedor{
+	width:400px;
+	padding:16px;
+	border-radius:10px;
+	margin:auto;
+	background-color:rgb(236, 89, 20);
+}
