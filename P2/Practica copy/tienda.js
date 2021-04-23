@@ -89,10 +89,13 @@ const server = http.createServer((req, res) => {
 
     if (fichero == './ContenidoTienda/procesar_user') {
         user = myURL.searchParams.get('nombre');
+        password = myURL.searchParams.get('password');
         
         tienda_user.forEach((element, index)=>{
           if (element["nombre"] == user){
+            if (element["password"] == password){
               registrado += 1;
+            }
           }
         });
         

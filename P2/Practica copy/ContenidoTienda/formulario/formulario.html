@@ -9,11 +9,21 @@
 </head>
 <body>
     <form action="/procesar_user" method="get">
-        <label for="nombre">Nombre</label>
-	    <input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre"/>
+        <label for="nombre">Name</label>
+	    <input type="text" name="nombre" id="nombre" placeholder="Escribe su nombre" required/>
+
+        <label for="password">Password</label>
+	    <input type="text" name="password" id="password" placeholder="Escribe su contraseña" required/>
 
         <input type="submit" name="enviar" value="enviar datos"/>
+
+        <p>Name: jorge, Pass = 1234</p>
+        <p>Name: dani, Pass = 1234</p>
+        
+        <div class = "contenido">
+            <a href="/">Pagina principal</a>
+        </div>
+        
     </form>
-    <a href="/">Pagina principal</a>
 </body>
 </html>

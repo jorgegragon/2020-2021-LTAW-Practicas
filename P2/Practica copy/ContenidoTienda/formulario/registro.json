@@ -2,8 +2,8 @@
     "Usuarios" : [
         {
             "nombre":"jorge",
-            "password" : "",
-            "correo" : "",
+            "password" : "1234",
+            "correo" : "jorge@hotmail",
             "direccion":"guindales",
             "tarjeta":"1234567",
             "carrito":{
@@ -15,8 +15,8 @@
 
         {
             "nombre":"dani",
-            "password" : "",
-            "correo" : "",
+            "password" : "1234",
+            "correo" : "dani@hotmail",
             "direccion":"guines",
             "tarjeta":"12367",
             "carrito":{
