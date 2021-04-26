@@ -210,6 +210,38 @@ const server = http.createServer((req, res) => {
       }
     }
 
+    //-- Tipo de fichero
+    
+    let mime = "";
+    switch (type_file) {
+      case "jpg":
+        mime = "imagen/jpg";
+        break;
+      case "png":
+        mime = "imagen/png";
+        break;
+      case "gif":
+        mime = "imagen/gif";
+        break;
+      case "ico":
+        mime = "imagen/ico";
+        break;
+      case "html":
+        mime = "text/html";
+        break;
+      case "css":
+        mime = "text/css";
+        break;
+      case "json":
+        mime = "application/json";
+        break;
+      case "js":
+        mime = "application/javascript";
+        break;
+      default:
+        mime = "text/html";
+    }
+
 
     fs.readFile (fichero, function(err, data) {
 
@@ -243,29 +275,6 @@ const server = http.createServer((req, res) => {
               data = BUSQUEDA;
           }
             //console.log("Lectura correcta");
-
-            let mime = "text/html";
-            
-            //Tipo de imágenes
-            if (type_file == 'png' || type_file == 'jpg') {
-                mime = "image/" + type_file;
-            }
-        
-            // CSS
-            if (type_file == "css"){
-                mime = "text/css";
-            }
-
-            //JSON
-            if (type_file == "json"){
-              mime = "application/json";
-            }
-
-            //JS
-            if (type_file == "js"){
-              mime = "application/javascript";
-            }
-            
             //-- Generar el mensaje de respuesta
             res.writeHead(200, {'Content-Type': mime});
             res.write(data);
