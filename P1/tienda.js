@@ -23,6 +23,30 @@ const server = http.createServer((req, res) => {
     type_file = fichero.split(".")[1]; //--Se coge la extensión del archivo
     fichero = "." + "/ContenidoTienda" + fichero;
     //console.log(type_file);
+    
+    let mime = "";
+    switch (type_file) {
+      case "jpg":
+        mime = "imagen/jpg";
+        break;
+      case "png":
+        mime = "imagen/png";
+        break;
+      case "html":
+        mime = "text/html";
+        break;
+      case "css":
+        mime = "text/css";
+        break;
+      case "json":
+        mime = "application/json";
+        break;
+      case "js":
+        mime = "application/javascript";
+        break;
+      default:
+        mime = "text/html";
+    }
 
 
     fs.readFile (fichero, function(err, data) {
@@ -37,18 +61,6 @@ const server = http.createServer((req, res) => {
         
             console.log("Lectura correcta");
 
-            let mime = "text/html";
-            
-            //Tipo de imágenes
-            if (type_file == 'png' || type_file == 'jpg') {
-                mime = "image/" + type_file;
-            }
-        
-            // CSS
-            if (type_file == "css"){
-                mime = "text/css";
-            }
-            console.log(mime);
             //-- Generar el mensaje de respuesta
             res.writeHead(200, {'Content-Type': mime});
             res.write(data);
