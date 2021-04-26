@@ -35,6 +35,13 @@ button{
 	width: 100%;
 }
 
+nav{
+	top: 0px;
+	background-color: #e08309;
+	margin: auto;
+	border: solid 2px black;
+}
+
 p {
     display: block;
     margin-block-start: 1em;
