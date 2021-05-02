@@ -35,3 +35,25 @@ h2{
 input[type="text"]{
     width:400px;
 }
+
+#display {  
+    text-align:left;
+    margin: auto;
+    padding:16px;
+    background:#fff;
+    height:300px;
+    width:370px;
+    border:1px solid #ACD8F0;
+    overflow: auto;
+}
+
+#actions {  
+    text-align:left;
+    margin: auto;
+    padding:16px;
+    background:#fff;
+    height:20px;
+    width:370px;
+    border:1px solid #ACD8F0;
+    overflow: auto;
+}

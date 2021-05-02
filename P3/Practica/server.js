@@ -6,6 +6,7 @@ const colors = require('colors');
 const fs = require('fs');
 
 const PUERTO = 8080;
+var contador = 0;
 
 //-- Crear una nueva aplciacion web
 const app = express();
@@ -35,20 +36,57 @@ app.use(express.static('public'));
 io.on('connect', (socket) => {
   
   console.log('** NUEVA CONEXIÓN **'.yellow);
+  contador += 1;
 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
+    contador -= 1;
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
-    console.log("Mensaje Recibido!: " + msg.blue);
-
-    //-- Reenviarlo a todos los clientes conectados
-    io.send(msg);
+    console.log(msg.username + ": " + msg.message);
+    if (msg.message[0] == "/") {
+        switch (msg.message) {
+            case "/help":
+              msg.username = "Admin";
+              msg.message = "/list, /hello, /date";
+              io.emit("message", msg);
+              break;
+            case "/list":
+              msg.username = "Admin";
+              msg.message = "Los usuarios conectados son: " + contador;
+              io.emit("message", msg);
+              break;
+            case "/hello":
+              msg.username = "Admin";
+              msg.message = "hello";
+              io.emit("message", msg);
+              break;
+            case "/date":          
+              msg.username = "Admin";
+              var hora = new Date();
+              var año = hora.getFullYear();
+              var mes = hora.getMonth();
+              var dia = hora.getDate();
+              msg.message = "Fecha: " + dia + "/" + mes + "/" + año;
+              io.emit("message", msg);
+              break;           
+            default:
+              io.sockets.emit("message", msg);
+        }
+        console.log("Ayudita no mas");
+    }else{
+        //-- Reenviarlo a todos los clientes conectados
+        //socket.broadcast.emit("message", msg);
+        io.sockets.emit("message", msg);
+    }
   });
 
+  socket.on("escritura", (msg)=> {
+    socket.broadcast.emit("escritura", msg);
+  });
 });
 
 //-- Lanzar el servidor HTTP
