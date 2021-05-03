@@ -50,33 +50,28 @@ io.on('connect', (socket) => {
     if (msg.message[0] == "/") {
         switch (msg.message) {
             case "/help":
-              msg.username = "Admin";
               msg.message = "/list, /hello, /date";
-              io.emit("message", msg);
+              io.emit("comandos", msg);
               break;
             case "/list":
-              msg.username = "Admin";
               msg.message = "Los usuarios conectados son: " + contador;
-              io.emit("message", msg);
+              io.emit("comandos", msg);
               break;
             case "/hello":
-              msg.username = "Admin";
               msg.message = "hello";
-              io.emit("message", msg);
+              io.emit("comandos", msg);
               break;
-            case "/date":          
-              msg.username = "Admin";
+            case "/date":
               var hora = new Date();
               var año = hora.getFullYear();
               var mes = hora.getMonth();
               var dia = hora.getDate();
               msg.message = "Fecha: " + dia + "/" + mes + "/" + año;
-              io.emit("message", msg);
+              io.emit("comandos", msg);
               break;           
             default:
               io.sockets.emit("message", msg);
         }
-        console.log("Ayudita no mas");
     }else{
         //-- Reenviarlo a todos los clientes conectados
         //socket.broadcast.emit("message", msg);

@@ -55,5 +55,14 @@ input[type="text"]{
     height:20px;
     width:370px;
     border:1px solid #ACD8F0;
-    overflow: auto;
+}
+
+a{
+	text-align: center;
+	text-decoration: none;
+	color: black;
+    border-radius: 10px;
+    padding:16px;
+    border: 2px solid #000000;
+    background:#fff;
 }
