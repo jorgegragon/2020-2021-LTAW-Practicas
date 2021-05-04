@@ -2,7 +2,7 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 
-const PUERTO = 8082;
+const PUERTO = 8080;
 
 //-- Cambios
 var PRINCIPAL = fs.readFileSync('./ContenidoTienda/index.html','utf-8');

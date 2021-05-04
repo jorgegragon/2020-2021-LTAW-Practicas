@@ -7,7 +7,7 @@
     * colors: 1.4.0
     * express: 4.17.1
     * i: 0.3.6
-    * "socket.io": 4.0.1
+    * socket.io: 4.0.1
     * wscat: 4.0.1
  
  ## Inicialización de la práctica
