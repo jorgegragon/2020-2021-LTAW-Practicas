@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Grande</title>
+  <link rel="stylesheet" href="../estilos/estilo_chat.css">
+  <!-- Cargar la biblioteca Socket.IO. Nos la debe entregar el servidor -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Cliente que usa los Sockets.io-->
+  <script src="../cliente.js" defer></script>
+
+</head>
+
+<body>
+    <div class="contenido">
+      <h2><a href="/">Mini-Chat</a></h2>
+        <div class="contenedor">
+          <p id="display"></p>
+          <p id="actions"></p>
+        </div>
+        <p></p>
+        <div class="escritura">
+          <input type="text" id="username" placeholder="Nickname">
+          <input type="text" placeholder="Escribe aquí el mensaje..." autocomplete="off" id="msg_entry">
+        </div>
+        <h2>Jorge Grande</h2>
+    </div>
+</body>
+</html>

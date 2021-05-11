@@ -1,0 +1,48 @@
+body{
+  background-color: rgb(235, 177, 70);
+}
+
+h1 {
+    width: 93%;
+    padding: 20px;
+    background-color: lightgreen;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+.blue {
+    color: blue;
+}
+
+.red {
+  color: red;
+}
+
+#display {  
+  text-align:left;
+  margin: auto;
+  padding:16px;
+  background:#fff;
+  height:200px;
+  width:250px;
+  border: 1px solid #ACD8F0;
+  overflow: scroll;
+}
+
+.contenedor{
+  columns: 2;
+  text-align: center;
+  column-rule: black solid 2px;
+}
+
+.contenido{
+  width: 350px;
+}
+
+.chat{
+  width: 380px;
+}
+
+#lista {
+  text-align: left;
+}

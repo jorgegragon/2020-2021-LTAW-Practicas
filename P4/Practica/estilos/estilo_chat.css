@@ -1,0 +1,68 @@
+.contenido{
+	width:500px;
+	padding:16px;
+	border-radius:10px;
+	border: solid 2px black;
+	margin:auto;
+	background-color: #ccc;
+}
+body{
+	background-color:#e08309 ;
+}
+
+h2{
+    text-align: center;
+}
+
+.contenedor{
+	width:400px;
+	padding:16px;
+	border-radius:10px;
+	border: 2px solid black;
+	margin:auto;
+	background-color: rgb(255, 255, 255);
+}
+
+.escritura{
+	width:400px;
+	padding:16px;
+    border-radius: 10px;
+	border: 2px solid #000000;
+    margin: auto;
+    background-color: rgb(209, 32, 180);
+}
+
+input[type="text"]{
+    width:400px;
+}
+
+#display {  
+    text-align:left;
+    margin: auto;
+    padding:16px;
+    background:#fff;
+    height:300px;
+    width:370px;
+    border: 1px solid #ACD8F0;
+    overflow: scroll;
+}
+
+#actions {  
+    text-align:left;
+    margin: auto;
+    padding:16px;
+    background:#fff;
+    height:20px;
+    width:370px;
+    border:1px solid #ACD8F0;
+}
+
+a{
+	text-align: center;
+	text-decoration: none;
+	color: black;
+    border-radius: 10px;
+    padding:16px;
+    border: 2px solid #000000;
+    background:#fff;
+}
