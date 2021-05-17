@@ -27,7 +27,7 @@ ipe.textContent = ip.address();
 ipe.textContent += ":" + PUERTO;
 
 btn_test.onclick = () => {
-    display.innerHTML += "<p>" + "Hola!" + "</p>";
+    display.innerHTML += "<p>" + "Admin: Hola!" + "</p>";
     //-- Enviar mensaje al proceso principal
     electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA");
 }

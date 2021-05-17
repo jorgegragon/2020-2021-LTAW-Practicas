@@ -8,6 +8,7 @@ let username = document.getElementById("username");
 const socket = io();
 
 socket.on("message", (msg)=>{
+  console.log (msg);
   display.innerHTML += '<p style="color:black">' + msg.username + ": " + msg.message + '</p>';
   actions.innerHTML = "";
 });

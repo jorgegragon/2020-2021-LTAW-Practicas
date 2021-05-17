@@ -66,13 +66,11 @@ electron.app.on('ready', () => {
 
 electron.ipcMain.handle('test', (event, msg) => {
   
-  //var mesag = [];
-  //mesag.username = "Admin";
-  //mesag.message = "Hola!";
-  // io.sockets.emit("message", mesag);
-
-  console.log("-> Mensaje: " + msg);
-
+  var msg = {};
+  msg.username = "Admin";
+  msg.message = "Hola!";
+  io.sockets.emit("message", msg);
+  console.log("-> Mensaje: " + msg.message);
 });
 
 //----- GESTION SOCKETS IO
@@ -87,8 +85,8 @@ io.on('connect', (socket) => {
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     contador -= 1;
-  });  
-
+  });
+  
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
     console.log(msg.username + ": " + msg.message);
